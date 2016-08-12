@@ -1,0 +1,56 @@
+//
+//  BundleID2Process.pch
+//  BundleID2Process
+//
+//  Created by TuMi on 15/8/24.
+//  Copyright (c) 2015年 TuMi. All rights reserved.
+//
+
+#ifndef BundleID2Process_BundleID2Process_pch
+#define BundleID2Process_BundleID2Process_pch
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 7.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif
+
+/*
+ XCode LLVM XXX - Preprocessing中Debug会添加 DEBUG=1 标志
+ */
+#ifdef DEBUG
+#define YvDebugLog(FORMAT, ...) fprintf(stderr,"%s line:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define NSLog(FORMAT, ...) nil
+#endif
+/**
+ *  后台基础定时间隔
+ */
+#define SLEEPINTERVAL  5.0f
+/**
+ *  保存数据的key
+ */
+#define DATA  @"NewlyMatches"
+/**
+ *  全部匹配列表
+ */
+#define ALLDATA @"AllMatchList"
+/**
+ *  刷新界面的通知
+ */
+#define REFRESHMYUI @"RefreshMyPageNotification"
+
+//RGB转UIColor（不带alpha值）
+#define UIColorFromRGB(rgbValue) [UIColor  colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0  green:((float)((rgbValue & 0xFF00) >> 8))/255.0  blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+//RGB转UIColor（带alpha值）
+#define UIColorRGBAlpha(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
+/**
+ *  主色调
+ */
+#define kColorMainBlue      UIColorFromRGB(0x00c2d4)//主色调颜色，薄荷蓝
+#endif
